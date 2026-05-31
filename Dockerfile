@@ -1,9 +1,10 @@
-FROM python:3.8-slim-buster
-WORKDIR /app
+FROM python:3.10-slim-buster
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+WORKDIR /app
 
 COPY . .
 
-CMD python3 main.py
+RUN pip3 install --upgrade pip --break-system-packages
+RUN pip3 install -U -r requirements.txt --break-system-packages
+
+CMD ["python3", "main.py"]
